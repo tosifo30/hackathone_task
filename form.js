@@ -69,7 +69,8 @@ login.addEventListener("submit",(event)=>{
 })
 
 
-function replace(){
-    window.location.replace("product.html");
+function replace(event){
+    event.preventDefault()
+    window.location.replace("index.html");
 }
 
