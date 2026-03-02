@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="module" src="main.js" async></script>
+</head>
+<body class="light-mode" id="body">
+    <header>
+        <div>
+            <h1>Tosifo</h1>
+
+        </div>
+    <div class="side">
+    <button onclick="home()"><i class="fas fa-home"></i><a href="">Home</a></button>
+    <button onclick="allProduct()"><i class="fas fa-box"></i> Product</button>
+    <button onclick="whiteList()"><i class="fas fa-user-check"></i> Whitelist</button>
+    <button onclick="setting()"><i class="fas fa-cog"></i> Setting</button>
+   </div>
+        <div>
+            <button>
+                <span class="span" id="cartCount">0</span>
+                <i class="fa-solid fa-cart-shopping" onclick="openPoppop()"></i>
+            </button>
+            <button onclick="login()" style="color: white; background-color: red; margin-left: 10px; border-radius: 8px;">Login</button>
+        </div>
+    </header>
+
+ 
+
+
+<div id="home">
+  
+<!-- hero section -->
+ <div class="withHero">
+<div class="hero-container" id="hero">
+    <div class="hero">
+        <div class="img"><img src="img/hero-1.avif" alt="Slide 1"></div>
+        <div class="img"><img src="img/hero_1_1.png" alt="Slide 2"></div>
+        <div class="img"><img src="img/hero.avif" alt="Slide 3"></div>
+    </div>
+
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+</div>
+
+<div>
+    <div id="8Card" class="Card8">
+</div>
+<div class="but" id="but">
+    <button id="allbtn" onclick="allProduct()">See All Cards >></button>
+</div>
+</div>
+
+
+</div>
+</div>
+
+<!-- Product div -->
+
+<div class="product" id="product" >
+    <div class="category" >
+        <div class="catagories" id="category">
+
+        </div>
+           <!-- search -->
+    <div class="search">
+          <input type="search" name="serch" id="search" placeholder="Serch here ..">
+    </div>
+
+    </div>
+    <div class="container_product" id="container_product">
+
+    </div>
+
+</div>
+
+<div class="setting" id="setting">
+
+    <div class="moodbtn">
+        <button onclick=" changebg()">Mode Changebg</button><br>
+        <!-- <button onclick="modewhite()">Dark Mode</button> -->
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+</body>
+</html>
