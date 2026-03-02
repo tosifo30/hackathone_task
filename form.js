@@ -12,7 +12,7 @@ wellCome.style.display="none"
 
 
 click.addEventListener("click", (event)=>{
-    event.preventDefault();
+    // event.preventDefault();
     if(login.style.display="none"){
         login.style.display="block"
         login.style.margin=""
