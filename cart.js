@@ -4,8 +4,6 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 window.render=function(){
   poppop.innerHTML="";
   console.log(cart);
-
-  
   cart.forEach(cardItem => {
     let cart_div = document.createElement("div");
     cart_div.setAttribute("class","cartdiv")
@@ -37,13 +35,13 @@ render();
 
 window.removeCart = function(id) {
 
-    // 🔥 Remove item from cart array
+    //  Remove item from cart array
     cart = cart.filter(item => item.id !== id);
 
-    // 🔥 Update localStorage
+    // 🔥Update localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    // 🔥 Re-render UI
+    // 🔥Re-render UI
     render();
 }
 
@@ -69,6 +67,8 @@ window.decrement = function(id) {
     render();
 }
 
-
+window.remove=function(){
+    window.close("cart.html");
+}
 
 

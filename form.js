@@ -12,7 +12,7 @@ wellCome.style.display="none"
 
 
 click.addEventListener("click", (event)=>{
-    // event.preventDefault();
+    event.preventDefault();
     if(login.style.display="none"){
         login.style.display="block"
         login.style.margin=""
@@ -39,7 +39,6 @@ if (userData.email !== userData.confirmEmail) {
     }
 
     // 2. Save to Local Storage
-    // We use JSON.stringify because localStorage can't store objects directly
     localStorage.setItem("userProfile", JSON.stringify(userData));
 
     console.log("Data saved to localStorage:", userData);

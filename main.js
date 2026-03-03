@@ -18,46 +18,38 @@ console.log("yer its working")
 // local storage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Function to update the slide position
+
+
+// for slide move also
 function updateSlider() {
-    // Moves the container to the left by (100% * index)
     heroContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
-// Logic for Next/Prev buttons
 function moveSlide(direction) {
     currentIndex += direction;
+    // If last then go back to first slide.
     if (currentIndex >= totalSlides) {
-        currentIndex = 0; // Loop back to start
+        currentIndex = 0;
     } else if (currentIndex < 0) {
-        currentIndex = totalSlides - 1; // Loop to end
+        currentIndex = totalSlides - 1;
     } 
     updateSlider();
-    resetTimer(); // Reset auto-slide when user interacts
 }
 
-// Auto-slide logic
 let slideInterval = setInterval(() => {
     moveSlide(1);
 }, 3000);
 
-// Function to restart the timer if a button is clicked
-function resetTimer() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(() => {
-        moveSlide(1);
-    }, 3000);
-}
 
 
-// cards Append
+// cards Append in product list also show in screen all cards
 
 window.productCard=function(){
     proContainer.innerHTML=""
     products.forEach(item => {
-        let pro_card=document.createElement("div")
-        pro_card.setAttribute("class","allcard")
-        pro_card.innerHTML=`
+        let more_card=document.createElement("div")
+        more_card.setAttribute("class","allcard")
+        more_card.innerHTML=`
         <img src="${item.image}" alt="">
             <h1>${item.name}</h1>
             <h3>${item.price}</h3>
@@ -65,13 +57,10 @@ window.productCard=function(){
             <button onclick="addToCart(${item.id})">Add to Cart</button>
             <button onclick="addToWhitelist(${item.id})">Add to WhiteList</button>
         `
-        proContainer.appendChild(pro_card)
+        proContainer.appendChild(more_card)
         
     });
-    console.log("hello")
-
 }
-
 productCard();
 
 // selector for apend
@@ -86,6 +75,7 @@ window.allProduct=function(){
     product.style.display="block"
     eight_card.style.display="none"
     but.style.display="none"
+    morecard.style.display="none"
 
 }
 
@@ -93,15 +83,14 @@ window.allProduct=function(){
 
 
 // for 8 card
+// .slice(0, 8) ensures only the first 8 items are processed
+
 
 window.eightCard = function() {
     eight_card.innerHTML = "";
-
-    // .slice(0, 8) ensures only the first 8 items are processed
     products.slice(0, 8).forEach(item => {
         let pros_card = document.createElement("div");
-        pros_card.setAttribute("class", "eightcard");
-        
+        pros_card.setAttribute("class", "eightcard");  
         pros_card.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
             <h1>${item.name}</h1>
@@ -110,17 +99,43 @@ window.eightCard = function() {
             <button onclick="addToCart(${item.id})">Add to Cart</button>
             <button onclick="addToWhitelist(${item.id})">Add to Wishlist</button>
         `;
-        
         eight_card.appendChild(pros_card);
     });
-    
-    console.log("First 8 products rendered");
 }
-
 eightCard();
 
+// More card add 
+let morecard=document.getElementById("morecard")
+morecard.style.display="none"
 
-// catagory button
+window.morePageCard = function() {
+    // morecard.innerHTML=""
+    products.slice(9, 16).forEach(item => {
+        let pros_card = document.createElement("div");
+        pros_card.setAttribute("class", "more8card");  
+        pros_card.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h1>${item.name}</h1>
+            <h3>${item.price}</h3>
+            <p>Description</p>
+            <button onclick="addToCart(${item.id})">Add to Cart</button>
+            <button onclick="addToWhitelist(${item.id})">Add to Wishlist</button>
+        `;
+        morecard.appendChild(pros_card);
+    });
+}
+morePageCard();
+
+window.MoreCard=function(){
+    eight_card.style.display="none"
+    morecard.style.display="block"
+
+}
+
+
+
+
+// catagory button we take data from catagory and then put in button
 
 function catagorybtn(){
     catbtn.innerHTML=""
@@ -138,7 +153,7 @@ catagorybtn()
 
 
 
-// search
+// function for serch when we serach a card that they show me
 search.addEventListener("input", () => {
   let value = search.value.toLowerCase();
 
@@ -159,10 +174,33 @@ search.addEventListener("input", () => {
     proContainer.appendChild(card_div);
   });
 });
+// catagory whwn we search about catogary then we can also serach
+
+search.addEventListener("input", () => {
+  let value = search.value.toLowerCase();
+
+  let filterCategoryCard = products.filter((seritem) =>
+    seritem.category.toLowerCase().includes(value)
+  );
+//   proContainer.innerHTML = ""; 
+  filterCategoryCard.forEach(items => {
+    let card_div = document.createElement("div");
+    card_div.innerHTML = `
+            <img src="${items.image}" alt="${items.name}">
+            <h1>${items.name}</h1>
+            <h3>${items.price}</h3>
+            <p>Description</p>
+            <button onclick="addToCart(${items.id})">Add to Cart</button>
+            <button onclick="addToWhitelist(${items.id})">Add to Wishlist</button>
+        `;
+    proContainer.appendChild(card_div);
+  });
+});
 
 
-// catagrice in btn
 
+
+// catagrice in btn like we when we click on botton then those catagory show which equal to button text
 
 window.showCardCat=function(clickbtn){
   if(clickbtn.innerHTML==="All"){
@@ -190,22 +228,17 @@ window.showCardCat=function(clickbtn){
 }
 
 
-// close poppop
-// let main_poppop=document.getElementById("main_poppop")
-// main_poppop.style.display="none"
+// functio for poppop sccreen open
 
 window.openPoppop=function(){
-    // main_poppop.style.display="block"
      window.open("cart.html", "_self");
          localStorage.setItem("cart", JSON.stringify(cart)); // 🔥 SAVE CART
 }
-window.remove=function(){
-    window.history.back();
-}
 
 
 
-// Add to cart
+
+// Add to cart like when we click add to card then we show that they add to local storage
 
 function saveCart(){
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -224,31 +257,34 @@ window.addToCart=function(productId){
   saveCart();
   increaseCount();
   render();
-  alert(selectedproduct.name+"Add to cart")
   
 }
+
+
+// Local Storage Array For Whitelist
+// Add to Whitelist
 let whitelist = JSON.parse(localStorage.getItem("whitelist")) || [];
-// 🔹 Add to Whitelist
+
 window.addToWhitelist = function(productId) {
     console.log("Adding to whitelist...");
 
     const selectedProduct = products.find(item => item.id === productId);
     const exist = whitelist.find(item => item.id === productId);
     if(exist) {
+
         alert("Item already in Whitelist");
         return;
     }
     whitelist.push({...selectedProduct, quantity: 1});
     localStorage.setItem("whitelist", JSON.stringify(whitelist));
     renderWhite();
-    alert(selectedProduct.name + " added to whitelist");
 }
 
 
+// cont for cart when we add csrd to and poppop then the show me a count
 
 
 let cartCount=document.getElementById("cartCount")
-// cart cout
 function increaseCount(){
   const totalItems = cart.reduce((total, item) => total + item.quantity,0 );
   cartCount.textContent = totalItems;
@@ -257,9 +293,15 @@ function increaseCount(){
  increaseCount()
 
 
+
+//  functoin for white list in click when we click then function apply 
+
  window.whiteList=function(){
     window.open("whitelist.html", "_self");
  }
+
+// funtion fr setting twhen we click on sething then what function run
+
  let allbtn=document.getElementById("allbtn")
  let setting=document.getElementById("setting")
  setting.style.display="none"
@@ -272,7 +314,7 @@ function increaseCount(){
  }
 
 
-// ✅ Function to set mode
+// Function to set mode
 
 
 window.changebg=function(){
@@ -291,7 +333,10 @@ window.changebg=function(){
         body.classList.add("light-mode")
         body.classList.remove("dark-mode")
     }
+    saveCart()
 }
+
+// click for login form 
 
 
 window.login=function(){

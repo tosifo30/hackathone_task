@@ -72,7 +72,9 @@ header .span{
     border-radius: 50%;
 }
 
-
+a:hover{
+    color: #2563eb;
+}
 /* side bar */
 
 .side{
@@ -293,6 +295,75 @@ header .span{
     opacity: 0.8;
 }
 
+/* more card */
+
+.moremain{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 80%;
+    gap: 40px;
+
+}
+
+.moreContainer{
+     /* width: 100%; */
+    margin: auto;
+    margin-top: 100px;
+}
+.more8card{
+    width: 30%;
+}
+
+.more8card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Prevents image stretching */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* 4. Typography */
+.more8card h1 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.more8card h3 {
+    color: #27ae60; /* Green for price */
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* 5. Buttons */
+.more8card button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+/* Specific button colors */
+.more8card button:first-of-type {
+    background-color: #3498db; /* Blue for Cart */
+    color: white;
+}
+
+.more8card button:last-of-type {
+    background-color: #ecf0f1; /* Light grey for Wishlist */
+    color: #333;
+}
+
+.more8card button:hover {
+    opacity: 0.8;
+}
+
+
+
 /* All button */
 
 .but {
@@ -320,10 +391,11 @@ header .span{
 /* catagory btn */
 .product .category{
     width: 100%;
-    height: 100px;
+    height: fit-content;
     border: 1px solid;
     padding: 25px;
     display: flex;
+
     justify-content: space-between;
     
 }
@@ -659,10 +731,14 @@ header .span{
 
 }
 
+.catagories{
+    flex-wrap: wrap;
+}
+
 
 /* ----------- TABLET (≤ 768px) ----------- */
 @media (max-width: 768px) {
-
+    
     /* Header */
     header, .header {
         flex-direction: column;
@@ -734,11 +810,19 @@ header .span{
         width: 60px;
         height: 60px;
     }
+    .product .category{
+        flex-direction: column;
+        gap: 20px;
+        height: fit-content;
+    }
 }
 
 /* ----------- MOBILE (≤ 480px) ----------- */
 @media (max-width: 480px) {
-
+    .cartdiv{
+        flex-direction: column;
+        gap: 10px;
+    }
     /* Header */
     header, .header {
         flex-direction: column;
@@ -843,5 +927,10 @@ header .span{
         width: 90px;
         height: 35px;
         font-size: 0.8rem;
+    }
+    .product .category{
+        flex-direction: column;
+        height: fit-content;
+        gap: 10px;
     }
 }
