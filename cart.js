@@ -38,16 +38,16 @@ window.removeCart = function(id) {
     //  Remove item from cart array
     cart = cart.filter(item => item.id !== id);
 
-    // 🔥Update localStorage
+    // Update localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    // 🔥Re-render UI
+    // Re-render UI
     render();
 }
 
 
 
-// 🔥 Increment Quantity
+//  Increment Quantity
 window.increment = function(id) {
     cart = cart.map(item => {
         if(item.id === id) item.quantity + 1;
@@ -57,7 +57,7 @@ window.increment = function(id) {
     render();
 }
 
-// 🔥 Decrement Quantity
+//  Decrement Quantity
 window.decrement = function(id) {
     cart = cart.map(item => {
         if(item.id === id && item.quantity > 1) item.quantity - 1;
