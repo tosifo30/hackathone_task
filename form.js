@@ -21,7 +21,7 @@ click.addEventListener("click", (event)=>{
 })
 
 SignUp.addEventListener("submit",(event)=>{
-    // event.preventDefault();
+    event.preventDefault();
     let formData=new FormData(event.target)
 
  let userData={
@@ -68,7 +68,10 @@ login.addEventListener("submit",(event)=>{
 })
 
 
-function replace(){
-    window.open("index.html");
-}
+// function replace(){
+//     window.open("index.html");
+// }
 
+function replace() {
+    window.location.replace("index.html");
+}

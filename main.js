@@ -5,6 +5,9 @@ let products=returnProducts();
 let category=categorys();
 
 
+
+
+
 let currentIndex = 0;
 const slides = document.querySelectorAll('.img');
 const totalSlides = slides.length;
@@ -13,7 +16,6 @@ let proContainer=document.getElementById("container_product")
 let eight_card=document.getElementById("8Card")
 let search=document.getElementById("search")
 let catbtn=document.getElementById("category")
-console.log("yer its working")
 
 // local storage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -83,7 +85,7 @@ window.allProduct=function(){
 
 
 // for 8 card
-// .slice(0, 8) ensures only the first 8 items are processed
+// .slice(0, 8) only the first 8 items are processed
 
 
 window.eightCard = function() {
@@ -232,7 +234,7 @@ window.showCardCat=function(clickbtn){
 
 window.openPoppop=function(){
      window.open("cart.html", "_self");
-         localStorage.setItem("cart", JSON.stringify(cart)); // 🔥 SAVE CART
+         localStorage.setItem("cart", JSON.stringify(cart)); 
 }
 
 
@@ -244,15 +246,22 @@ function saveCart(){
   localStorage.setItem("cart", JSON.stringify(cart));
   // alert("ur right")
 }
+let savedUser = JSON.parse(localStorage.getItem("userProfile"));
 
 window.addToCart=function(productId){
     console.log("yes doing work")
   const selectedproduct= products.find((ids)=>ids.id==productId)
   const  exist=cart.find((item)=>item.id===productId)
+  if(!savedUser){
+    alert("No user logged in. Please login first.");
+    window.location.href="./form.html"
+    return
+  }
   if(exist){
     alert("Item Alredy Exist")
     return
   }
+
   cart.push({...selectedproduct,quantity:1})
   saveCart();
   increaseCount();
@@ -266,7 +275,12 @@ window.addToCart=function(productId){
 let whitelist = JSON.parse(localStorage.getItem("whitelist")) || [];
 
 window.addToWhitelist = function(productId) {
-    console.log("Adding to whitelist...");
+    // console.log("Adding to whitelist...");
+    if(!savedUser){
+    alert("No user logged in. Please login first.");
+    window.location.href="./form.html"
+    return
+  }
 
     const selectedProduct = products.find(item => item.id === productId);
     const exist = whitelist.find(item => item.id === productId);
@@ -304,41 +318,50 @@ function increaseCount(){
 
  let allbtn=document.getElementById("allbtn")
  let setting=document.getElementById("setting")
- setting.style.display="none"
- window.setting=function(){
-    hero.style.display="none"
-    eight_card.style.display="none"
-    allbtn.style.display="none"
-     setting.style.display="block"
+//  window.setting=function(){
+//     hero.style.display="none"
+//     eight_card.style.display="none"
+//     allbtn.style.display="none"
+//      setting.style.display="block"
 
- }
+//  }
 
 
 // Function to set mode
 
 
 window.changebg=function(){
-    console.log("Asdfas");
     let body=document.getElementById("body")
+    let modeChange=document.getElementById("modeChange")
    
     let islight=body.classList.contains("light-mode")
     if(islight){
+        proContainer.style.background="#222"
         body.classList.add("dark-mode")
         body.classList.remove("light-mode")
         body.style.transition="2s ease"
-        
-        
+        modeChange.classList.remove("fa-moon");
+        modeChange.classList.add("fa-sun");
         
     }else{
+        proContainer.style.background="#ffff"
         body.classList.add("light-mode")
         body.classList.remove("dark-mode")
+        modeChange.classList.remove("fa-sun");
+        modeChange.classList.add("fa-moon");
     }
     saveCart()
 }
 
 // click for login form 
 
+let logout=document.getElementById("logout")
+logout.addEventListener("click", () => {
 
-window.login=function(){
-    window.open("form.html");
-}
+    window.replace.open("form.html")
+});
+
+
+
+
+

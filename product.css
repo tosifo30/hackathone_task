@@ -33,6 +33,16 @@ header{
     background-color: aliceblue;
     border: 1px solid;
     border-radius: 24px;
+    color: black;
+
+}
+.buttons .button{
+    max-width: 50px;
+    border-radius: 50%;
+}
+.buttons .login{
+    width: 100px;
+    padding: 5px;
 }
 
 /* search */
@@ -298,45 +308,43 @@ a:hover{
 /* more card */
 
 .moremain{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    width: 80%;
+    width: 100%;
     gap: 40px;
 
 }
 
 .moreContainer{
-     /* width: 100%; */
+     display: flex;
+     
     margin: auto;
     margin-top: 100px;
-}
-.more8card{
-    width: 30%;
+
 }
 
-.more8card img {
+
+.moreContainer img {
     width: 100%;
     height: 200px;
-    object-fit: cover; /* Prevents image stretching */
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
 }
 
 /* 4. Typography */
-.more8card h1 {
+.moreContainer h1 {
     font-size: 1.2rem;
     margin: 10px 0;
     color: #333;
 }
 
-.more8card h3 {
+.moreContainer h3 {
     color: #27ae60; /* Green for price */
     font-size: 1.1rem;
     margin-bottom: 10px;
 }
 
 /* 5. Buttons */
-.more8card button {
+.moreContainer button {
     width: 100%;
     padding: 10px;
     margin-top: 8px;
@@ -348,17 +356,17 @@ a:hover{
 }
 
 /* Specific button colors */
-.more8card button:first-of-type {
+.moreContainer button:first-of-type {
     background-color: #3498db; /* Blue for Cart */
     color: white;
 }
 
-.more8card button:last-of-type {
+.moreContainer button:last-of-type {
     background-color: #ecf0f1; /* Light grey for Wishlist */
     color: #333;
 }
 
-.more8card button:hover {
+.moreContainer button:hover {
     opacity: 0.8;
 }
 
